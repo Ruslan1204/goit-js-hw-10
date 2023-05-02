@@ -45,7 +45,7 @@ function creatMarkup(arr) {
   if (arr.length >= 10) {
     Notify.info('Too many matches found. Please enter a more specific name.');
   }
-  refs.list.innerHTML = markup || [];
+  refs.list.innerHTML = markup;
 }
 
 function creatDiv(arr) {
@@ -58,5 +58,5 @@ function creatDiv(arr) {
     })
     .join(' ');
 
-  refs.div.innerHTML = div || [];
+  refs.div.innerHTML = div;
 }
