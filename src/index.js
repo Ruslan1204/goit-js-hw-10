@@ -21,9 +21,13 @@ function onInput(evt) {
     refs.div.innerHTML = '';
   }
 
-  fetchCountries(trim).then(function (data = []) {
-    creatMarkup(data);
-  });
+  if (!trim) {
+    return;
+  } else {
+    fetchCountries(trim).then(function (data = []) {
+      creatMarkup(data);
+    });
+  }
 }
 
 function creatMarkup(arr) {
