@@ -35,7 +35,7 @@ function creatMarkup(arr) {
     .map(
       item =>
         `<li> 
-        <img src="${item.flags.svg}" alt="" width="50" >
+        <img src="${item.flags.svg}" alt="" width="80" >
         <h2>${item.name.official}<h2>
         </li>`
     )
@@ -56,9 +56,9 @@ function creatDiv(arr) {
   const div = arr
     .map(function (item) {
       const value = Object.values(item.languages);
-      return `<h3>Capital:${item.capital}</h3>
-        <h3>Population:${item.population}</h3>
-        <h3>Languages:${value}</h3>`;
+      return `<h3><span>Capital:</span>  ${item.capital}</h3>
+        <h3><span>Population:</span>  ${item.population}</h3>
+        <h3><span>Languages:</span>  ${value}</h3>`;
     })
     .join(' ');
 
