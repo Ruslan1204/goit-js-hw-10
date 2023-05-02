@@ -17,9 +17,10 @@ function onInput(evt) {
   
   if (!name) {
     refs.list.innerHTML = '';
+    refs.div.innerHTML = '';
   }
 
-  fetchCountries(name).then(data => console.log(data));
+  fetchCountries(name).then(data => creatMarkup(data));
 }
 
 function creatMarkup(arr) {
