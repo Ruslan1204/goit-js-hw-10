@@ -14,22 +14,26 @@ refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(evt) {
   let name = evt.target.value;
-  
+  const trim = name.trim();
+
   if (!name) {
     refs.list.innerHTML = '';
     refs.div.innerHTML = '';
   }
 
-  fetchCountries(name).then(data => creatMarkup(data));
+  fetchCountries(trim).then(function (data = []) {
+    creatMarkup(data);
+  });
 }
 
 function creatMarkup(arr) {
   const markup = arr
     .map(
-      item => `<li> 
-    <img src="${item.flags.svg}" alt="" width="50" >
-    <h2>${item.name.official}<h2>
-    </li>`
+      item =>
+        `<li> 
+        <img src="${item.flags.svg}" alt="" width="50" >
+        <h2>${item.name.official}<h2>
+        </li>`
     )
     .join('');
   if (arr.length <= 1) {
@@ -41,7 +45,7 @@ function creatMarkup(arr) {
   if (arr.length >= 10) {
     Notify.info('Too many matches found. Please enter a more specific name.');
   }
-  refs.list.innerHTML = markup;
+  refs.list.innerHTML = markup || [];
 }
 
 function creatDiv(arr) {
@@ -52,7 +56,7 @@ function creatDiv(arr) {
         <h3>Population:${item.population}</h3>
         <h3>Languages:${value}</h3>`;
     })
-    .join('');
+    .join(' ');
 
-  refs.div.innerHTML = div;
+  refs.div.innerHTML = div || [];
 }
