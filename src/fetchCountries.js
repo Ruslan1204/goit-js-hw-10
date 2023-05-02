@@ -7,7 +7,7 @@ function fetchCountries(name = 'Ukraine') {
   )
     .then(resp => {
       if (!resp.ok) {
-        throw new Error(Notify.failure('Qui timide rogat docet negare'));
+        throw new Error(Notify.failure('Oops, there is no country with that name'));
       }
       return resp.json();
     })
