@@ -14,8 +14,12 @@ refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(evt) {
   let name = evt.target.value;
-  name.trim()
-  fetchCountries(name).then(data => creatMarkup(data));
+  
+  if (!name) {
+    refs.list.innerHTML = '';
+  }
+
+  fetchCountries(name).then(data => console.log(data));
 }
 
 function creatMarkup(arr) {
@@ -29,7 +33,9 @@ function creatMarkup(arr) {
     .join('');
   if (arr.length <= 1) {
     creatDiv(arr);
-  } 
+  } else {
+    refs.div.innerHTML = '';
+  }
 
   if (arr.length >= 10) {
     Notify.info('Too many matches found. Please enter a more specific name.');
@@ -39,12 +45,13 @@ function creatMarkup(arr) {
 
 function creatDiv(arr) {
   const div = arr
-    .map(
-      item =>
-        `<h3>Capital:${item.capital}</h3>
-  <h3>Population:${item.population}</h3>
-  <h3>Languages:${item.languages}</h3>`
-    )
+    .map(function (item) {
+      const value = Object.values(item.languages);
+      return `<h3>Capital:${item.capital}</h3>
+        <h3>Population:${item.population}</h3>
+        <h3>Languages:${value}</h3>`;
+    })
     .join('');
+
   refs.div.innerHTML = div;
 }
