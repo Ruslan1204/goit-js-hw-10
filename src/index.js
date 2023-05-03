@@ -46,9 +46,13 @@ function creatMarkup(arr) {
     refs.div.innerHTML = '';
   }
 
-  if (arr.length >= 10) {
+  if (arr.length > 10) {
+    refs.div.innerHTML = '';
     Notify.info('Too many matches found. Please enter a more specific name.');
+    return
   }
+
+
   refs.list.innerHTML = markup;
 }
 
