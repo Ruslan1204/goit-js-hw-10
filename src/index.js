@@ -19,6 +19,7 @@ function onInput(evt) {
   if (!name) {
     refs.list.innerHTML = '';
     refs.div.innerHTML = '';
+    return;
   }
 
   if (!trim) {
@@ -40,14 +41,17 @@ function creatMarkup(arr) {
         </li>`
     )
     .join('');
+
   if (arr.length <= 1) {
     creatDiv(arr);
   } else {
     refs.div.innerHTML = '';
+    refs.list.innerHTML = '';
   }
 
   if (arr.length > 10) {
-    refs.div.innerHTML = '';
+    // refs.div.innerHTML = '';
+    // refs.list.innerHTML = '';
     Notify.info('Too many matches found. Please enter a more specific name.');
     return;
   }
@@ -63,7 +67,7 @@ function creatDiv(arr) {
         <h3><span>Population:</span>  ${item.population}</h3>
         <h3><span>Languages:</span>  ${value}</h3>`;
     })
-    .join(' ');
+    .join('');
 
   refs.div.innerHTML = div;
 }
